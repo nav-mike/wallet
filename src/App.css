@@ -10,6 +10,11 @@
   flex-direction: column;
 }
 
+.Add-data-form__buttons-container {
+  display: flex;
+  flex-direction: row;
+}
+
 .Add-data-form__container {
   padding: .5em;
   margin: .5em;
@@ -19,6 +24,7 @@
   margin: .5em;
   padding: .5em;
   border-radius: 5px;
+  flex: 1;
 }
 
 .App__half-container {
