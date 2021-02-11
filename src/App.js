@@ -7,7 +7,7 @@ import {
   FirebaseAuthProvider,
   FirebaseAuthConsumer,
   IfFirebaseAuthed,
-  IfFirebaseAuthedAnd
+  IfFirebaseUnAuthed
 } from '@react-firebase/auth';
 
 const firebaseConfig = {
@@ -60,13 +60,11 @@ function App() {
           return <div>You are authenticated</div>;
         }}
       </IfFirebaseAuthed>
-      <IfFirebaseAuthedAnd
-        filter={({ providerId }) => providerId !== "anonymous"}
-      >
-        {({ providerId }) => {
-          return <div>You are authenticated with {providerId}</div>;
+      <IfFirebaseUnAuthed>
+        {() => {
+          return <div>You are not authenticated</div>;
         }}
-      </IfFirebaseAuthedAnd>
+      </IfFirebaseUnAuthed>
     </FirebaseAuthProvider>
   );
 }
