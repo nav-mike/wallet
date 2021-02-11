@@ -9,6 +9,7 @@ import {
   IfFirebaseAuthed,
   IfFirebaseUnAuthed
 } from '@react-firebase/auth';
+import GuestPage from './GuestPage';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAbfDg5M7m5Cvfm5ZrBwBKUcsxifnLWvzw",
@@ -31,40 +32,32 @@ const firebaseConfig = {
 function App() {
   return(
     <FirebaseAuthProvider firebase={firebase} {...firebaseConfig}>
-      <button
-        onClick={() => {
-          const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-          firebase.auth().signInWithPopup(googleAuthProvider);
-        }}
-      >
-        Sign In with Google
-      </button>
-      <button
-        onClick={() => {
-          firebase.auth().signOut();
-        }}
-      >
-        Sign Out
-      </button>
-      <FirebaseAuthConsumer>
-        {({ isSignedIn, user, providerId }) => {
-          return (
-            <pre style={{ height: 300, overflow: "auto" }}>
-              {JSON.stringify({ isSignedIn, user, providerId }, null, 2)}
-            </pre>
-          );
-        }}
-      </FirebaseAuthConsumer>
-      <IfFirebaseAuthed>
-        {() => {
-          return <div>You are authenticated</div>;
-        }}
-      </IfFirebaseAuthed>
-      <IfFirebaseUnAuthed>
-        {() => {
-          return <div>You are not authenticated</div>;
-        }}
-      </IfFirebaseUnAuthed>
+      <div className="App App__container_flex-columns">
+        <button
+          onClick={() => {
+            firebase.auth().signOut();
+          }}
+        >
+          Sign Out
+        </button>
+        <FirebaseAuthConsumer>
+          {({ isSignedIn, user, providerId }) => {
+            return (
+              <pre style={{ height: 300, overflow: "auto" }}>
+                {JSON.stringify({ isSignedIn, user, providerId }, null, 2)}
+              </pre>
+            );
+          }}
+        </FirebaseAuthConsumer>
+        <IfFirebaseAuthed>
+          {() => {
+            return <div>You are authenticated</div>;
+          }}
+        </IfFirebaseAuthed>
+        <IfFirebaseUnAuthed>
+          <GuestPage firebase={firebase} />
+        </IfFirebaseUnAuthed>
+      </div>
     </FirebaseAuthProvider>
   );
 }

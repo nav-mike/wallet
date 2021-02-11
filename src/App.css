@@ -42,3 +42,16 @@
   flex: 1;
   /* min-width: 100%; */
 }
+
+.Guest-page__login-button {
+  cursor: pointer;
+  margin: 0;
+  max-width: 164px;
+  max-height: 72px;
+  border-radius: 4px;
+  background-color: #1a73e8;
+  padding: 0 16px;
+  color: white;
+  font-family: 'Google Sans', Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+  font-size: .875rem;
+}
