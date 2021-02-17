@@ -13,6 +13,7 @@ import UserPage from './UserPage';
 const firebaseConfig = {
   apiKey: "AIzaSyAbfDg5M7m5Cvfm5ZrBwBKUcsxifnLWvzw",
   authDomain: "wallet-ef833.firebaseapp.com",
+  databaseURL: "https://wallet-ef833-default-rtdb.firebaseio.com",
   projectId: "wallet-ef833",
   storageBucket: "wallet-ef833.appspot.com",
   messagingSenderId: "127993178832",
