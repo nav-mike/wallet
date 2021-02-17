@@ -5,7 +5,6 @@ const Budget = () => {
       <h2>Budget:</h2>
       <div>{budget} EUR</div>
       <form className="App__container_flex-columns Add-data-form__container">
-        <input type="text" placeholder="Personal token" className="form__item" />
         <input type="text" placeholder="Budget value" className="form__item" />
         <button type="button" className="form__item">Define budget</button>
       </form>
