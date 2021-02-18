@@ -1,12 +1,17 @@
 import './App.css';
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/firestore';
 import {
   FirebaseAuthProvider,
   FirebaseAuthConsumer,
   IfFirebaseAuthed,
   IfFirebaseUnAuthed
 } from '@react-firebase/auth';
+import {
+  FirestoreProvider,
+  FirestoreDocument
+} from '@react-firebase/firestore';
 import GuestPage from './GuestPage';
 import UserPage from './UserPage';
 
@@ -38,7 +43,18 @@ function App() {
                 >
                   Sign Out
                 </button>
-                <UserPage credentials={{ isSignedIn, user, providerId }} />
+                <FirestoreProvider firebase={firebase} {...firebaseConfig}>
+                  <FirestoreDocument path={`/wallet_budget_values/${user.uid}`}>
+                    {d => {
+                      return(
+                        <UserPage
+                          credentials={{ isSignedIn, user, providerId }}
+                          data={d.value}
+                        />
+                      );
+                    }}
+                  </FirestoreDocument>
+                </FirestoreProvider>
               </div>
             );
           }}
