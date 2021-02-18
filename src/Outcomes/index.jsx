@@ -18,7 +18,10 @@ const Outcomes = () => {
         <button
           type="button" 
           className="form__item"
-          onClick={() => { setOutcomes(+outcomes + (+outcome)) }}
+          onClick={() => { 
+            setOutcomes(+outcomes + (+outcome));
+            setOutcome(0);
+          }}
         >
           Add outcome
         </button>
