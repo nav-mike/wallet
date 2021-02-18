@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const Outcomes = () => {
+const Outcomes = (props) => {
   const [outcomes, setOutcomes] = useState(0);
   const [outcome, setOutcome] = useState(0);
+
+  useEffect(() => {
+    setOutcomes(props.dbOutcomes);
+  }, [props.dbOutcomes]);
   return(
     <div className="Outcomes__container App__half-container App__container_flex-columns">
       <h2>Outcomes:</h2>
