@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const Budget = () => {
-  const [budget, setBudget] = useState(500);
+const Budget = (props) => {
+  console.log(props.dbBudget);
+  const [budget, setBudget] = useState(props.dbBudget);
   const [budgetVal, setBudgetVal] = useState(0);
+
+  useEffect(() => {
+    setBudget(props.dbBudget);
+  }, [props.dbBudget]);
   return(
     <div className="Budget__container App__half-container App__container_flex-columns">
       <h2>Budget:</h2>
