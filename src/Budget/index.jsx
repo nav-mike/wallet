@@ -1,10 +1,13 @@
-import React, { useRef } from 'react';
-import { FirestoreMutation } from '@react-firebase/firestore';
+import React, { useState, useEffect } from 'react';
 
 const Budget = (props) => {
-  const budget = props.dbBudget;
-  const userId = props.userId;
-  const budgetEl = useRef(null);
+  const [budget, setBudget] = useState(props.dbBudget);
+  const runMutation = props.runMutation;
+  const [budgetVal, setBudgetVal] = useState(0);
+
+  useEffect(() => {
+    setBudget(props.dbBudget);
+  }, [props.dbBudget]);
 
   return (
     <div className="Budget__container App__half-container App__container_flex-columns">
@@ -15,26 +18,23 @@ const Budget = (props) => {
           type="text" 
           placeholder="Budget value" 
           className="form__item" 
-          ref={budgetEl}
-        />
-        <FirestoreMutation type="set" path={`/wallet_budget_values/${userId}`}>
-          {({ runMutation }) => {
-            return (
-              <button 
-                type="button" 
-                className="form__item"
-                onClick={() => {
-                  runMutation({budget: +budgetEl.current.value})
-                  .then(_res => {
-                    budgetEl.current.value = '';
-                  });
-                }}
-              >
-                Define budget
-              </button>
-            );
+          value={budgetVal}
+          onChange={(event) => {
+            setBudgetVal(event.target.value);
           }}
-        </FirestoreMutation>
+        />
+        <button
+          type="button"
+          className="form__item"
+          onClick={() => {
+            runMutation({budget: +budgetVal})
+              .then(_res => {
+                setBudgetVal(0);
+              });
+          }}
+        >
+          Define budget
+        </button>
       </form>
     </div>
   );

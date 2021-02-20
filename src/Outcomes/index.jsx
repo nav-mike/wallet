@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef } from 'react';
+import { FirestoreMutation } from '@react-firebase/firestore';
 
 const Outcomes = (props) => {
-  const [outcomes, setOutcomes] = useState(0);
-  const [outcome, setOutcome] = useState(0);
+  const outcomes = props.dbOutcomes;
+  const userId = props.userId;
+  const outcomeEl = useRef(null);
 
-  useEffect(() => {
-    setOutcomes(props.dbOutcomes);
-  }, [props.dbOutcomes]);
   return(
     <div className="Outcomes__container App__half-container App__container_flex-columns">
       <h2>Outcomes:</h2>
@@ -16,19 +15,27 @@ const Outcomes = (props) => {
           type="number"
           placeholder="Outcome value"
           className="form__item"
-          value={outcome}
-          onChange={(event) => { setOutcome(event.target.value) }}
+          ref={outcomeEl}
         />
-        <button
-          type="button" 
-          className="form__item"
-          onClick={() => { 
-            setOutcomes(+outcomes + (+outcome));
-            setOutcome(0);
+        <FirestoreMutation type="set" path={`/wallet_budget_values/${userId}`}>
+          {({ runMutation }) => {
+            return (
+              <button
+                type="button" 
+                className="form__item"
+                onClick={() => { 
+                  console.log(outcomes);
+                  /*runMutation({outcomes: +outcomeEl.current.value})
+                    .then(_res => {
+                      outcomeEl.current.value = '';
+                    });*/
+                }}
+              >
+                Add outcome
+              </button>
+            );
           }}
-        >
-          Add outcome
-        </button>
+        </FirestoreMutation>
       </form>
     </div>
   );
