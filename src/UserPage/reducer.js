@@ -12,8 +12,7 @@ export function reducer(state, action) {
     case UPDATE_BUDGET:
       return {...state, budget: action.payload.budget};
     case ADD_OUTCOME:
-      console.log(action);
-      return {...state};
+      return {...state, outcomes: action.payload.outcomes};
     default:
       console.log(action);
       return {...state};

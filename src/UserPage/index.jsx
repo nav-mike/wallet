@@ -26,7 +26,14 @@ const UserPage = (props) => {
       <Budget
         value={data.budget}
         dispatch={dispatch}
-        doc={props.credentials.user.uid}
+        doc={doc}
+        collection={collection}
+        db={db}
+      />
+      <Outcomes
+        value={data.outcomes}
+        dispatch={dispatch}
+        doc={doc}
         collection={collection}
         db={db}
       />
