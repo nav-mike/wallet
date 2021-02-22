@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const Budget = (props) => {
+  console.log(props);
   const [budget, setBudget] = useState(props.dbBudget);
   const runMutation = props.runMutation;
   const [budgetVal, setBudgetVal] = useState(0);

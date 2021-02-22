@@ -1,3 +1,4 @@
+import React, { useReducer, useState, useEffect } from 'react';
 import './App.css';
 import firebase from 'firebase/app';
 import 'firebase/auth';
@@ -14,6 +15,9 @@ import {
 } from '@react-firebase/firestore';
 import GuestPage from './GuestPage';
 import UserPage from './UserPage';
+import { reducer } from './UserPage/reducer';
+import initialState from './UserPage/state';
+import { LOAD_DATA } from './UserPage/constants';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAbfDg5M7m5Cvfm5ZrBwBKUcsxifnLWvzw",
@@ -43,18 +47,11 @@ function App() {
                 >
                   Sign Out
                 </button>
-                <FirestoreProvider firebase={firebase} {...firebaseConfig}>
-                  <FirestoreDocument path={`/wallet_budget_values/${user.uid}`}>
-                    {d => {
-                      return(
                         <UserPage
                           credentials={{ isSignedIn, user, providerId }}
-                          data={d.value}
+                          firebase={firebase}
+                          config={firebaseConfig}
                         />
-                      );
-                    }}
-                  </FirestoreDocument>
-                </FirestoreProvider>
               </div>
             );
           }}
