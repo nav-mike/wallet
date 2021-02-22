@@ -9,20 +9,27 @@ import { reducer } from './reducer';
 
 const UserPage = (props) => {
   const [data, dispatch] = useReducer(reducer, initialState);
+  const collection = '/wallet_budget_values';
+  const db = props.firebase.firestore();
+  const doc = props.credentials.user.uid;
 
-  console.log(props);
   useEffect(() => {
-    const db = props.firebase.firestore();
-
-    db.collection(`/wallet_budget_values`)
-      .doc(props.credentials.user.uid)
+    db.collection(collection)
+      .doc(doc)
       .get()
       .then(result => {
         dispatch({type: LOAD_DATA, payload: result.data()});
       })
-  }, []);
+  }, [db, doc]);
   return (
     <div>
+      <Budget
+        value={data.budget}
+        dispatch={dispatch}
+        doc={props.credentials.user.uid}
+        collection={collection}
+        db={db}
+      />
     </div>
   );
 };
