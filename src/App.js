@@ -1,4 +1,4 @@
-import React, { useReducer, useState, useEffect } from 'react';
+import React from 'react';
 import './App.css';
 import firebase from 'firebase/app';
 import 'firebase/auth';
@@ -9,15 +9,8 @@ import {
   IfFirebaseAuthed,
   IfFirebaseUnAuthed
 } from '@react-firebase/auth';
-import {
-  FirestoreProvider,
-  FirestoreDocument
-} from '@react-firebase/firestore';
 import GuestPage from './GuestPage';
 import UserPage from './UserPage';
-import { reducer } from './UserPage/reducer';
-import initialState from './UserPage/state';
-import { LOAD_DATA } from './UserPage/constants';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAbfDg5M7m5Cvfm5ZrBwBKUcsxifnLWvzw",
