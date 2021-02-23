@@ -28,13 +28,18 @@ const UserPage = (props) => {
   const doc = props.credentials.user.uid;
 
   useEffect(() => {
-    db.collection(collection)
-      .doc(doc)
-      .get()
-      .then(result => {
-        const payload = result.data() ? result.data() : initialState;
+    const dbRef = db.collection(collection).doc(doc)
+    dbRef.get()
+      .then(async result => {
+        let payload = {};
+        if (result.exists) {
+          payload = result.data();
+        } else {
+          payload = initialState;
+          await dbRef.set(payload)
+        }
         dispatch({type: LOAD_DATA, payload: payload});
-      })
+      });
   }, [db, doc]);
   return (
     <div className="user-page__container">
