@@ -32,26 +32,46 @@
 }
 
 .Budget__container {
-  border: gold 2px solid;
+  border: #0345fc 2px solid;
   flex: 1;
   /* min-width: 100%; */
 }
 
 .Outcomes__container {
-  border: cadetblue 2px solid;
+  border: #0345fc 2px solid;
   flex: 1;
   /* min-width: 100%; */
+}
+
+.user-page__container {
+  flex: 1;
+}
+
+.App__container_warning {
+  border-color: #debb31;
+}
+
+.App__container_danger {
+  border-color: #d62d0b;
+}
+
+.App__container_ok {
+  border-color: #26cc08;
+}
+
+.App__container_death {
+  border-color: #0f0f0f;
 }
 
 .Guest-page__login-button {
   cursor: pointer;
   margin: 0;
-  max-width: 164px;
-  max-height: 72px;
+  max-height: 82px;
   border-radius: 4px;
   background-color: #1a73e8;
   padding: 0 16px;
   color: white;
   font-family: 'Google Sans', Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
   font-size: .875rem;
+  flex: 1;
 }

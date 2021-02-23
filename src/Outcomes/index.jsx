@@ -19,9 +19,10 @@ const Outcomes = (props) => {
         dispatch({type: ADD_OUTCOME, payload: payload});
       });
   }, [dispatch, value, collection, db, doc, outcomes]);
+  const className = `Outcomes__container App__half-container App__container_flex-columns ${props.wrapperClassName}`
 
   return (
-    <div className="Outcomes__container App__half-container App__container_flex-columns">
+    <div className={className}>
       <h2>Outcomes:</h2>
       <div>{outcomes} EUR</div>
       <form className="App__container_flex-columns Add-data-form__container">

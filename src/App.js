@@ -31,7 +31,7 @@ function App() {
         <IfFirebaseAuthed>
           {({ isSignedIn, user, providerId }) => {
             return(
-              <div>
+              <div className="App__container_flex-columns">
                 <button
                   className="Guest-page__login-button"
                   onClick={() => {
@@ -40,11 +40,11 @@ function App() {
                 >
                   Sign Out
                 </button>
-                        <UserPage
-                          credentials={{ isSignedIn, user, providerId }}
-                          firebase={firebase}
-                          config={firebaseConfig}
-                        />
+                <UserPage
+                  credentials={{ isSignedIn, user, providerId }}
+                  firebase={firebase}
+                  config={firebaseConfig}
+                />
               </div>
             );
           }}
