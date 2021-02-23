@@ -32,7 +32,8 @@ const UserPage = (props) => {
       .doc(doc)
       .get()
       .then(result => {
-        dispatch({type: LOAD_DATA, payload: result.data()});
+        const payload = result.data() ? result.data() : initialState;
+        dispatch({type: LOAD_DATA, payload: payload});
       })
   }, [db, doc]);
   return (
