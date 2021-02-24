@@ -7,13 +7,12 @@ import { LOAD_DATA } from './constants';
 import { reducer } from './reducer';
 
 const stateClass = (budget, outcomes) => {
-  const diff = budget - outcomes;
   let result = 'App__container_';
-  if (diff <= 0) {
+  if (outcomes >= budget) {
     result = `${result}death`;
-  } else if (diff > budget / 2) {
+  } else if (outcomes < budget / 2) {
     result = `${result}ok`;
-  } else if (diff > budget * 3 / 4) {
+  } else if (outcomes < budget * 3 / 4) {
     result = `${result}warning`;
   } else {
     result = `${result}danger`;
