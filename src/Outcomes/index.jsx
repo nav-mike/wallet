@@ -16,6 +16,7 @@ const Outcomes = (props) => {
       .doc(doc)
       .update(payload)
       .then(_response => {
+        setValue(0);
         dispatch({type: ADD_OUTCOME, payload: payload});
       });
   }, [dispatch, value, collection, db, doc, outcomes]);
