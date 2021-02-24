@@ -34,13 +34,13 @@
 .Budget__container {
   border: #0345fc 2px solid;
   flex: 1;
-  /* min-width: 100%; */
+  min-height: 46vh;
 }
 
 .Outcomes__container {
   border: #0345fc 2px solid;
   flex: 1;
-  /* min-width: 100%; */
+  min-height: 45vh;
 }
 
 .user-page__container {
