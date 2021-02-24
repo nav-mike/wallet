@@ -1,7 +1,8 @@
 import {
   LOAD_DATA,
   UPDATE_BUDGET,
-  ADD_OUTCOME
+  ADD_OUTCOME,
+  RESET_OUTCOME
 } from './constants';
 
 export function reducer(state, action) {
@@ -12,6 +13,8 @@ export function reducer(state, action) {
     case UPDATE_BUDGET:
       return {...state, budget: action.payload.budget};
     case ADD_OUTCOME:
+      return {...state, outcomes: action.payload.outcomes};
+    case RESET_OUTCOME:
       return {...state, outcomes: action.payload.outcomes};
     default:
       console.log(action);

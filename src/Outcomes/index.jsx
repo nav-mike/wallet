@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { ADD_OUTCOME } from '../UserPage/constants';
+import { ADD_OUTCOME, RESET_OUTCOME } from '../UserPage/constants';
 
 const Outcomes = (props) => {
   const [outcomes, setOutcomes] = useState(props.value);
@@ -20,6 +20,16 @@ const Outcomes = (props) => {
         dispatch({type: ADD_OUTCOME, payload: payload});
       });
   }, [dispatch, value, collection, db, doc, outcomes]);
+  const resetOutcomesHandler = useCallback(() => {
+    const payload = {outcomes: 0};
+    db.collection(collection)
+      .doc(doc)
+      .update(payload)
+      .then(_response => {
+        dispatch({type: RESET_OUTCOME, payload: payload});
+      });
+  }, [dispatch, collection, db, doc]); 
+
   const className = `Outcomes__container App__half-container App__container_flex-columns ${props.wrapperClassName}`
 
   return (
@@ -42,6 +52,13 @@ const Outcomes = (props) => {
           onClick={addOutcomeHandler}
         >
           Add outcome
+        </button>
+        <button
+          type="button"
+          className="form__item"
+          onClick={resetOutcomesHandler}
+        >
+          Reset
         </button>
       </form>
     </div>
