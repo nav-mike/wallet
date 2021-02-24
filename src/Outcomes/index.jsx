@@ -36,13 +36,13 @@ const Outcomes = (props) => {
             setValue(+event.target.value);
           }}
         />
-              <button
-                type="button" 
-                className="form__item"
-                onClick={addOutcomeHandler}
-              >
-                Add outcome
-              </button>
+        <button
+          type="button" 
+          className="form__item"
+          onClick={addOutcomeHandler}
+        >
+          Add outcome
+        </button>
       </form>
     </div>
   );
