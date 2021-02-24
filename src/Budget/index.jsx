@@ -16,6 +16,7 @@ const Budget = (props) => {
       .doc(doc)
       .update(payload)
       .then(response => {
+        setValue(0);
         dispatch({type: UPDATE_BUDGET, payload: {budget: value}});
       });
   }, [dispatch, value, collection, db, doc]);
