@@ -28,13 +28,13 @@ const Outcomes = (props) => {
       .then(_response => {
         dispatch({type: RESET_OUTCOME, payload: payload});
       });
-  }, [dispatch, collection, db, doc]); 
+  }, [dispatch, collection, db, doc]);
 
   const className = `Outcomes__container App__half-container App__container_flex-columns ${props.wrapperClassName}`
 
   return (
     <div className={className}>
-      <h2>Outcomes:</h2>
+      <h2>Charges:</h2>
       <div>{outcomes} EUR</div>
       <form className="App__container_flex-columns Add-data-form__container">
         <input
@@ -47,11 +47,11 @@ const Outcomes = (props) => {
           }}
         />
         <button
-          type="button" 
+          type="button"
           className="form__item"
           onClick={addOutcomeHandler}
         >
-          Add outcome
+          Add charge
         </button>
         <button
           type="button"
