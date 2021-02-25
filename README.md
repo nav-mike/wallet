@@ -1,4 +1,4 @@
-# MyWallet applucation
+# MyWallet application
 
 Main goal of the application is understanding personal budget value and compare it with outcomes.
 Current version is 1.0b
@@ -14,4 +14,3 @@ You need to have google account for access to the app.
 2. Hosting - Google Firebase.
 3. Auth - Google Firebase auth system (only Google OAuth).
 4. Database - Google Firebase Firestore.
-
