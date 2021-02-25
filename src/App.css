@@ -16,19 +16,19 @@
 }
 
 .Add-data-form__container {
-  padding: .5em;
-  margin: .5em;
+  padding: 0.5em;
+  margin: 0.5em;
 }
 
 .form__item {
-  margin: .5em;
-  padding: .5em;
+  margin: 0.5em;
+  padding: 0.5em;
   border-radius: 5px;
   flex: 1;
 }
 
 .App__half-container {
-  padding: .5em;
+  padding: 0.5em;
 }
 
 .Budget__container {
@@ -71,7 +71,7 @@
   background-color: #1a73e8;
   padding: 0 16px;
   color: white;
-  font-family: 'Google Sans', Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
-  font-size: .875rem;
+  font-family: "Google Sans", Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+  font-size: 0.875rem;
   flex: 1;
 }

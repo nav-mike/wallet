@@ -1,6 +1,6 @@
 const GuestPage = (props) => {
   const firebase = props.firebase;
-  return(
+  return (
     <div>
       <button
         className="Guest-page__login-button"
@@ -13,6 +13,6 @@ const GuestPage = (props) => {
       </button>
     </div>
   );
-}
+};
 
 export default GuestPage;

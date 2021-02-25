@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { ADD_OUTCOME, RESET_OUTCOME } from '../UserPage/constants';
+import React, { useState, useEffect, useCallback } from "react";
+import { ADD_OUTCOME, RESET_OUTCOME } from "../UserPage/constants";
 
 const Outcomes = (props) => {
   const [outcomes, setOutcomes] = useState(props.value);
@@ -11,26 +11,26 @@ const Outcomes = (props) => {
   }, [props.value]);
 
   const addOutcomeHandler = useCallback(() => {
-    const payload = {outcomes: +outcomes + value};
+    const payload = { outcomes: +outcomes + value };
     db.collection(collection)
       .doc(doc)
       .update(payload)
-      .then(_response => {
+      .then((_response) => {
         setValue(0);
-        dispatch({type: ADD_OUTCOME, payload: payload});
+        dispatch({ type: ADD_OUTCOME, payload: payload });
       });
   }, [dispatch, value, collection, db, doc, outcomes]);
   const resetOutcomesHandler = useCallback(() => {
-    const payload = {outcomes: 0};
+    const payload = { outcomes: 0 };
     db.collection(collection)
       .doc(doc)
       .update(payload)
-      .then(_response => {
-        dispatch({type: RESET_OUTCOME, payload: payload});
+      .then((_response) => {
+        dispatch({ type: RESET_OUTCOME, payload: payload });
       });
   }, [dispatch, collection, db, doc]);
 
-  const className = `Outcomes__container App__half-container App__container_flex-columns ${props.wrapperClassName}`
+  const className = `Outcomes__container App__half-container App__container_flex-columns ${props.wrapperClassName}`;
 
   return (
     <div className={className}>
@@ -42,7 +42,7 @@ const Outcomes = (props) => {
           placeholder="Outcome value"
           className="form__item"
           value={value}
-          onChange={event => {
+          onChange={(event) => {
             setValue(+event.target.value);
           }}
         />
@@ -63,6 +63,6 @@ const Outcomes = (props) => {
       </form>
     </div>
   );
-}
+};
 
 export default Outcomes;

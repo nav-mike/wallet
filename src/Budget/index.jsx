@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { UPDATE_BUDGET } from '../UserPage/constants';
+import React, { useState, useEffect, useCallback } from "react";
+import { UPDATE_BUDGET } from "../UserPage/constants";
 
 const Budget = (props) => {
   const [budget, setBudget] = useState(props.value);
@@ -11,13 +11,13 @@ const Budget = (props) => {
   }, [props.value]);
 
   const updateBudgetHandler = useCallback(() => {
-    const payload = {budget: value};
+    const payload = { budget: value };
     db.collection(collection)
       .doc(doc)
       .update(payload)
-      .then(response => {
+      .then((response) => {
         setValue(0);
-        dispatch({type: UPDATE_BUDGET, payload: {budget: value}});
+        dispatch({ type: UPDATE_BUDGET, payload: { budget: value } });
       });
   }, [dispatch, value, collection, db, doc]);
 
@@ -26,10 +26,10 @@ const Budget = (props) => {
       <h2>Budget:</h2>
       <div>{budget} EUR</div>
       <form className="App__container_flex-columns Add-data-form__container">
-        <input 
-          type="text" 
-          placeholder="Budget value" 
-          className="form__item" 
+        <input
+          type="text"
+          placeholder="Budget value"
+          className="form__item"
           value={value}
           onChange={(event) => {
             setValue(+event.target.value);
@@ -45,6 +45,6 @@ const Budget = (props) => {
       </form>
     </div>
   );
-}
+};
 
 export default Budget;
