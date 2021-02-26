@@ -3,13 +3,12 @@ import {
   UPDATE_BUDGET,
   ADD_OUTCOME,
   RESET_OUTCOME,
-} from "./constants";
+} from './constants';
 
-export function reducer(state, action) {
+export default function reducer(state, action) {
   switch (action.type) {
     case LOAD_DATA:
-      const { budget, outcomes } = action.payload;
-      return { ...state, budget: budget, outcomes: outcomes };
+      return { ...state, budget: action.payload.budget, outcomes: action.payload.outcomes };
     case UPDATE_BUDGET:
       return { ...state, budget: action.payload.budget };
     case ADD_OUTCOME:
@@ -17,7 +16,6 @@ export function reducer(state, action) {
     case RESET_OUTCOME:
       return { ...state, outcomes: action.payload.outcomes };
     default:
-      console.log(action);
       return { ...state };
   }
 }
