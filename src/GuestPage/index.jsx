@@ -17,7 +17,7 @@ const GuestPage = ({ firebase }) => (
 );
 
 GuestPage.propTypes = {
-  firebase: PropTypes.objectOf().isRequired,
+  firebase: PropTypes.any.isRequired,
 };
 
 export default GuestPage;

@@ -58,7 +58,7 @@ Budget.propTypes = {
   dispatch: PropTypes.func.isRequired,
   collection: PropTypes.string.isRequired,
   doc: PropTypes.string.isRequired,
-  db: PropTypes.objectOf().isRequired,
+  db: PropTypes.object.isRequired,
 };
 
 export default Budget;
