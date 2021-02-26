@@ -1,38 +1,44 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { UPDATE_BUDGET } from "../UserPage/constants";
+import React, { useState, useEffect, useCallback } from 'react';
+import PropTypes from 'prop-types';
+import { UPDATE_BUDGET } from '../UserPage/constants';
 
-const Budget = (props) => {
-  const [budget, setBudget] = useState(props.value);
-  const [value, setValue] = useState(0);
-  const { dispatch, collection, doc, db } = props;
+const Budget = ({
+  value, dispatch, collection, doc, db,
+}) => {
+  const [budget, setBudget] = useState(value);
+  const [currentValue, setCurrentValue] = useState(0);
 
   useEffect(() => {
-    setBudget(props.value);
-  }, [props.value]);
+    setBudget(value);
+  }, [value]);
 
   const updateBudgetHandler = useCallback(() => {
-    const payload = { budget: value };
+    const payload = { budget: currentValue };
     db.collection(collection)
       .doc(doc)
       .update(payload)
-      .then((response) => {
-        setValue(0);
-        dispatch({ type: UPDATE_BUDGET, payload: { budget: value } });
+      .then(() => {
+        setCurrentValue(0);
+        dispatch({ type: UPDATE_BUDGET, payload: { budget: currentValue } });
       });
-  }, [dispatch, value, collection, db, doc]);
+  }, [dispatch, currentValue, collection, db, doc]);
 
   return (
     <div className="Budget__container App__half-container App__container_flex-columns">
       <h2>Budget:</h2>
-      <div>{budget} EUR</div>
+      <div>
+        {budget}
+        {' '}
+        EUR
+      </div>
       <form className="App__container_flex-columns Add-data-form__container">
         <input
           type="text"
           placeholder="Budget value"
           className="form__item"
-          value={value}
+          value={currentValue}
           onChange={(event) => {
-            setValue(+event.target.value);
+            setCurrentValue(+event.target.value);
           }}
         />
         <button
@@ -45,6 +51,14 @@ const Budget = (props) => {
       </form>
     </div>
   );
+};
+
+Budget.propTypes = {
+  value: PropTypes.number.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  collection: PropTypes.string.isRequired,
+  doc: PropTypes.string.isRequired,
+  db: PropTypes.objectOf().isRequired,
 };
 
 export default Budget;
