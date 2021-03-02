@@ -26,7 +26,7 @@ const Budget = ({
   return (
     <div className="Budget__container App__half-container App__container_flex-columns">
       <h2>Budget:</h2>
-      <div>
+      <div id="budgetValue">
         {budget}
         {' '}
         EUR
@@ -58,7 +58,7 @@ Budget.propTypes = {
   dispatch: PropTypes.func.isRequired,
   collection: PropTypes.string.isRequired,
   doc: PropTypes.string.isRequired,
-  db: PropTypes.object.isRequired,
+  db: PropTypes.shape({ collection: PropTypes.func.isRequired }).isRequired,
 };
 
 export default Budget;

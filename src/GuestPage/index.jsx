@@ -17,7 +17,12 @@ const GuestPage = ({ firebase }) => (
 );
 
 GuestPage.propTypes = {
-  firebase: PropTypes.any.isRequired,
+  firebase: PropTypes.shape({
+    auth: PropTypes.oneOfType([
+      PropTypes.shape({ GoogleAuthProvider: PropTypes }),
+      PropTypes.func.isRequired,
+    ]),
+  }).isRequired,
 };
 
 export default GuestPage;

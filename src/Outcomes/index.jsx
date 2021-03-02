@@ -22,6 +22,7 @@ const Outcomes = ({
         dispatch({ type: ADD_OUTCOME, payload });
       });
   }, [dispatch, currentValue, collection, db, doc, outcomes]);
+
   const resetOutcomesHandler = useCallback(() => {
     const payload = { outcomes: 0 };
     db.collection(collection)
@@ -37,7 +38,7 @@ const Outcomes = ({
   return (
     <div className={className}>
       <h2>Charges:</h2>
-      <div>
+      <div id="outcomesValues">
         {outcomes}
         {' '}
         EUR
@@ -76,7 +77,7 @@ Outcomes.propTypes = {
   dispatch: PropTypes.func.isRequired,
   collection: PropTypes.string.isRequired,
   doc: PropTypes.string.isRequired,
-  db: PropTypes.objectOf().isRequired,
+  db: PropTypes.shape({ collection: PropTypes.func.isRequired }).isRequired,
   wrapperClassName: PropTypes.string.isRequired,
 };
 

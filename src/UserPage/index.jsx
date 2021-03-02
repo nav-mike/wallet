@@ -6,7 +6,7 @@ import initialState from './state';
 import { LOAD_DATA } from './constants';
 import reducer from './reducer';
 
-const stateClass = (budget, outcomes) => {
+export const stateClass = (budget, outcomes) => {
   let result = 'App__container_';
   if (outcomes >= budget) {
     result = `${result}death`;
@@ -61,9 +61,9 @@ const UserPage = ({ firebase, credentials }) => {
 };
 
 UserPage.propTypes = {
-  firebase: PropTypes.objectOf({ firestore: PropTypes.func.isRequired }).isRequired,
-  credentials: PropTypes.objectOf({
-    user: PropTypes.objectOf({ uid: PropTypes.string.isRequired }).isRequired,
+  firebase: PropTypes.shape({ firestore: PropTypes.func.isRequired }).isRequired,
+  credentials: PropTypes.shape({
+    user: PropTypes.shape({ uid: PropTypes.string.isRequired }).isRequired,
   }).isRequired,
 };
 
